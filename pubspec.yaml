@@ -1,0 +1,55 @@
+name: memora_ai
+description: An AI-powered Personal Memory Vault acting as a user's second brain.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.3.6
+  riverpod_annotation: ^2.1.1
+
+  # Backend & Database
+  supabase_flutter: ^1.10.4
+  sqflite: ^2.3.0
+  path_provider: ^2.0.15
+  path: ^1.8.3
+
+  # AI & OCR
+  google_generative_ai: ^0.1.1
+  google_mlkit_text_recognition: ^0.9.0
+
+  # Utilities & Security
+  encrypt: ^5.0.1
+  crypto: ^3.0.3
+  uuid: ^3.0.7
+  shared_preferences: ^2.2.0
+  intl: ^0.18.1
+
+  # Accessibility & Biometrics
+  local_auth: ^2.1.6
+  speech_to_text: ^6.1.1
+
+  # UI & Animations
+  flutter_animate: ^4.2.0
+  fl_chart: ^0.63.0
+  graphview: ^1.2.0
+  glassmorphism: ^3.0.0
+  font_awesome_flutter: ^10.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+  riverpod_generator: ^2.2.3
+  build_runner: ^2.4.6
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/fonts/

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memora AI — Futuristic Personal Memory Vault</title>
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <!-- Interactive Neural Background Canvas -->
+  <canvas id="neural-bg"></canvas>
+
+  <!-- Proactive AI Memory Capture Assistant Toast -->
+  <div id="capture-assistant-toast" class="hud-panel hidden">
+    <div class="toast-content">
+      <i class="fa-solid fa-desktop-screenshot icon-glow"></i>
+      <div class="toast-text">
+        <p class="toast-tag">AI MEMORY CAPTURE ASSISTANT</p>
+        <p class="toast-msg">New Coursera Certificate screenshot detected. Save to Education?</p>
+      </div>
+      <div class="toast-actions">
+        <button id="toast-yes" class="btn btn-cyan">YES</button>
+        <button id="toast-no" class="btn btn-glass"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hud-container">
+    <!-- LEFT SIDEBAR: Controls & Uploads -->
+    <aside class="sidebar">
+      <div class="header-logo">
+        <h1>MEMORA AI</h1>
+        <span class="sub-logo">SECURE DIGITAL BRAIN</span>
+      </div>
+
+      <!-- Quick Actions / Upload Zone -->
+      <section class="hud-panel upload-zone">
+        <h3><i class="fa-solid fa-circle-plus icon-glow"></i> MEMORY INGESTION</h3>
+        <p class="section-desc">Dump screenshots, certificates, PDFs, or links instantly.</p>
+        
+        <div id="drop-area" class="drop-area">
+          <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+          <p>Drag & Drop or Click to Upload</p>
+          <input type="file" id="file-input" hidden multiple>
+        </div>
+
+        <div class="quick-types">
+          <button class="btn btn-icon-radial" data-type="photo" title="Upload Photo"><i class="fa-solid fa-image"></i></button>
+          <button class="btn btn-icon-radial" data-type="pdf" title="Upload PDF"><i class="fa-solid fa-file-pdf"></i></button>
+          <button class="btn btn-icon-radial" data-type="link" title="Save Link"><i class="fa-solid fa-link"></i></button>
+          <button class="btn btn-icon-radial" data-type="voice" title="Voice Capture"><i class="fa-solid fa-microphone"></i></button>
+        </div>
+      </section>
+
+      <!-- Background Processing Queue -->
+      <section class="hud-panel queue-panel">
+        <h3><i class="fa-solid fa-circle-nodes icon-glow"></i> PROCESSING QUEUE</h3>
+        <div id="queue-list" class="queue-list">
+          <div class="queue-empty">Queue idle. Ready for memories.</div>
+        </div>
+      </section>
+
+      <!-- Vault Health Score -->
+      <section class="hud-panel health-panel">
+        <h3><i class="fa-solid fa-heart-pulse icon-glow"></i> MEMORY HEALTH</h3>
+        <div class="health-flex">
+          <div class="health-wheel">
+            <svg viewBox="0 0 36 36" class="circular-chart">
+              <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <path class="circle" stroke-dasharray="87, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            </svg>
+            <div class="percentage">87</div>
+          </div>
+          <div class="health-details">
+            <p><i class="fa-solid fa-check text-green"></i> 342 Nodes Sorted</p>
+            <p id="health-duplicates"><i class="fa-solid fa-triangle-exclamation text-yellow"></i> 1 Duplicate Detected</p>
+            <p><i class="fa-solid fa-circle-info text-cyan"></i> 0 Untagged Files</p>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- CENTER DISPLAY: Galaxy Canvas & Orb Hub -->
+    <main class="main-display">
+      <header class="hud-header">
+        <div class="dashboard-stats">
+          <div class="stat-item">
+            <span class="label">VAULT INTEGRITY</span>
+            <span class="value text-cyan"><i class="fa-solid fa-shield-halved"></i> SECURED</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">ZERO-KNOWLEDGE</span>
+            <span class="value text-purple"><i class="fa-solid fa-key"></i> ON-DEVICE</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">TRUSTED DEVICE</span>
+            <span class="value"><i class="fa-solid fa-laptop-medical"></i> DETECTED</span>
+          </div>
+        </div>
+
+        <div class="theme-controls">
+          <button id="btn-dyslexic" class="btn btn-glass" title="Toggle Dyslexia-Friendly Mode">
+            <i class="fa-solid fa-font"></i> Dyslexic Mode
+          </button>
+        </div>
+      </header>
+
+      <!-- Interactive 3D Galaxy Map -->
+      <section class="galaxy-viewport">
+        <div class="viewport-title">
+          <h2>3D MEMORY GALAXY</h2>
+          <span>Pinch / Scroll to zoom. Drag to pan. Click stars to decrypt node.</span>
+        </div>
+        <canvas id="galaxy-canvas"></canvas>
+      </section>
+
+      <!-- Node Detail Inspector Overlay -->
+      <div id="node-inspector" class="hud-panel node-inspector hidden">
+        <div class="inspector-header">
+          <h4 id="inspect-title">Google Data Analytics Certificate</h4>
+          <button id="inspect-close" class="btn btn-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="inspector-body">
+          <p id="inspect-category" class="category-badge education">Education</p>
+          <div class="inspector-meta">
+            <span><strong>Priority Score:</strong> <span id="inspect-priority">92/100</span></span>
+            <span><strong>Size:</strong> <span id="inspect-size">1.4 MB</span></span>
+          </div>
+          <p class="inspector-desc" id="inspect-desc">OCR Content: Google Data Analytics Professional Certificate awarded to User. Completed June 2026.</p>
+          <div class="inspector-tags" id="inspect-tags">
+            <span class="tag">Google</span><span class="tag">Coursera</span><span class="tag">Analytics</span>
+          </div>
+          <div class="inspector-crypto">
+            <p><strong>SHA-256 Hash:</strong> <code id="inspect-hash">a2f8c05b8...</code></p>
+            <p><strong>Cyphertext Payload:</strong> <code>AES-GCM-256[Encrypted]</code></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT PANEL: AI Orb & Second Brain Chat -->
+    <aside class="ai-panel">
+      <!-- AI Orb Hub -->
+      <section class="orb-container">
+        <div class="orb-wrapper">
+          <div id="ai-orb" class="ai-orb idle">
+            <div class="orb-core"></div>
+            <div class="orb-ring ring-1"></div>
+            <div class="orb-ring ring-2"></div>
+            <div class="orb-ring ring-3"></div>
+          </div>
+        </div>
+        <div id="orb-status" class="orb-status">ORB STANDBY</div>
+      </section>
+
+      <!-- Second Brain AI Chat -->
+      <section class="hud-panel chat-panel">
+        <h3><i class="fa-solid fa-brain icon-glow"></i> SECOND BRAIN ASSISTANT</h3>
+        <div id="chat-messages" class="chat-messages">
+          <div class="message ai">
+            Greetings! I am Memora, your digital brain. Ask me anything about your stored screenshots, certificates, PDFs, or reminders.
+          </div>
+        </div>
+        <div class="chat-input-wrapper">
+          <input type="text" id="chat-input" placeholder="e.g. When did I complete my BLS course?">
+          <button id="chat-mic" class="btn btn-glass" title="Voice Search"><i class="fa-solid fa-microphone"></i></button>
+          <button id="chat-send" class="btn btn-cyan"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </section>
+
+      <!-- Active AI Reminders -->
+      <section class="hud-panel reminders-panel">
+        <h3><i class="fa-solid fa-bell icon-glow"></i> PROACTIVE REMINDERS</h3>
+        <div id="reminders-list" class="reminders-list">
+          <div class="reminder-card urgent">
+            <div class="reminder-content">
+              <p class="reminder-title">BLS Certificate Expiry</p>
+              <p class="reminder-desc">Expires in 15 days. Recertification required.</p>
+            </div>
+            <span class="time-badge">July 3</span>
+          </div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
